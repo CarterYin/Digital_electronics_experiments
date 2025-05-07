@@ -1,0 +1,12 @@
+\contentsline {section}{\numberline {1}实验仪器与用具}{2}{section.1}%
+\contentsline {section}{\numberline {2}实验内容与步骤}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}概述}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}实验步骤}{3}{subsection.2.2}%
+\contentsline {section}{\numberline {3}实验结果}{12}{section.3}%
+\contentsline {subsection}{\numberline {3.1}实验结果1：LED 流水灯实验}{12}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}实验结果2：按键控制 LED 灯实验基础问题}{12}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}实验结果3：按键控制 LED 灯实验变式1}{12}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}实验结果4：按键控制 LED 灯实验变式2}{12}{subsection.3.4}%
+\contentsline {section}{\numberline {4}实验总结}{12}{section.4}%
+\contentsline {subsection}{\numberline {4.1}实验中的问题与感想}{12}{subsection.4.1}%
+\contentsline {section}{\numberline {5}附录：Verilog 代码}{13}{section.5}%
