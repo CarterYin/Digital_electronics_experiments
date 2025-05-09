@@ -1,7 +1,8 @@
 # Digital_electronics_experiments
 
 ## include my experimental reports for Digital electronics which base on latex
-<img width="451" alt="1" src="https://github.com/user-attachments/assets/68a4c5ee-bf73-4e32-aa69-48c804a747a8" />
+![1](https://github.com/user-attachments/assets/4273a795-36a0-475e-98af-cd869f7d92de)
+
 
 ## https://github.com/CarterYin/Digital_electronics_experiments
 ## Please acknowledge if you cite or use it.
