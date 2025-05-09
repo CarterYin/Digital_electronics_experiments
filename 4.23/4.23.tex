@@ -445,16 +445,17 @@
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.7\textwidth]{step1.png}
-        \caption{新建 Project 的操作界面}
+        \caption{新建 Project 的操作界面1}
         \label{fig:step1}
     \end{figure}
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.7\textwidth]{step1_2.png}
-        \caption{新建 Project 的操作界面}
+        \caption{新建 Project 的操作界面2}
         \label{fig:step1_2}
     \end{figure}
-    \textbf{说明：}（此处填写新建工程的详细步骤和注意事项）
+
+\cleardoublepage
 
     \item 新建 .v 文件，编写代码并测试编译
     \begin{figure}[H]
@@ -473,8 +474,15 @@
             \label{fig:step2_2}
         \end{subfigure}
     \end{figure}
-    \textbf{说明：}（此处填写代码编写、保存及测试编译的详细说明）
-    
+    \textbf{说明：}
+    \begin{itemize}
+        \item 在 Quartus 工程中新建 .v 文件后，双击打开文件，按照实验要求输入 Verilog 代码。
+        \item 编写完成后，按 \textbf{Ctrl+S} 保存代码文件，确保文件已保存到 \textbf{rtl} 文件夹下，便于后续管理和调用。
+        \item 保存后，右键点击该文件，选择“Add File to Project”，将代码文件添加到工程中。
+        \item 在主界面点击“Analysis and Synthesis”或“Start Compilation”按钮，进行代码的语法检查和综合编译。
+        \item 编译过程中如有语法错误，软件会在 Messages 窗口提示具体报错信息。根据提示修改代码，直至编译通过。
+        \item 建议每次修改代码后都及时保存并重新编译，确保每一步更改都能被正确识别和验证。
+    \end{itemize}
 \cleardoublepage
     \item 预编译，确认无误
     \begin{figure}[H]
@@ -489,7 +497,7 @@
         \caption{预编译结果界面2}
         \label{fig:step3_2}
     \end{figure}
-    \textbf{说明：}（此处填写预编译通过的判断方法及常见问题）
+    \textbf{说明：}预编译通过后，Quartus 的 Messages 窗口不会显示红色的 Error 报错信息，且 Analysis and Synthesis、Fitter 等阶段均能顺利完成。常见问题包括：代码语法错误、端口未连接、模块名或端口名拼写不一致、文件未正确添加到工程、顶层模块设置错误等。遇到报错时，可双击报错信息定位到具体代码行，根据提示逐一修改，直至所有错误消除。建议每次修改后都重新预编译，确保问题及时发现和解决。
 
 \vspace{1cm}
     
@@ -510,8 +518,7 @@
             \label{fig:step4_2}
         \end{subfigure}
     \end{figure}
-    \textbf{说明：}（此处说明为何需要一致及如何检查）
-
+    \textbf{说明：}Project Name（工程名）和代码中的 module 名称保持一致，可以避免综合和仿真时出现顶层模块无法识别的问题。检查方法为：在新建工程时设置的 Project Name 应与顶层 Verilog 文件中的 module 名称完全相同（包括大小写），可通过工程属性和代码首行 module 语句进行核对。如不一致，建议修改工程名或 module 名称保持统一。
 \cleardoublepage
     \item 保存代码文件至 rtl 文件夹内
     \begin{figure}[H]
@@ -520,7 +527,9 @@
         \caption{保存代码文件到指定文件夹}
         \label{fig:step5}
     \end{figure}
-    \textbf{说明：}（此处说明文件管理规范）
+    \textbf{说明：}建议所有 Verilog 源代码文件统一保存在工程目录下的 \textbf{rtl} 文件夹内，便于管理和后续调用。图片文件建议存放于 \textbf{img} 文件夹，TCL 脚本等辅助文件可放在 \textbf{script} 文件夹。文件命名应简洁明了，避免使用中文、空格或特殊字符，推荐使用小写字母、数字和下划线组合。例如：\texttt{seg\_led\_static.v}、\texttt{step1.png}。这样有助于工程的规范化管理和后期维护。
+
+\cleardoublepage
 
     \item 打开 Pin Planner 分配引脚
     \begin{figure}[H]
@@ -529,8 +538,7 @@
         \caption{Pin Planner 分配引脚界面}
         \label{fig:step6}
     \end{figure}
-    \textbf{说明：}（此处填写分配引脚的详细步骤）
-
+    \textbf{说明：}在 Quartus 中分配引脚时，首先点击工具栏的“Assignments”菜单，选择“Pin Planner”进入引脚分配界面。根据原理图或实验指导书，将各个信号（如时钟、复位、数码管段选、位选、按键等）对应到实际开发板的物理引脚编号。在 Pin Planner 界面左侧找到信号名称，右侧输入或选择对应的引脚编号。分配完成后，点击保存并关闭 Pin Planner。建议分配完引脚后进行一次完整编译，确保无引脚冲突或未分配等错误。如有 tcl 脚本文件，也可通过“Assignments”→“Import Assignments”导入脚本自动分配引脚。
 \cleardoublepage
 
     \item 手动输入/使用 tcl 脚本文件
@@ -549,8 +557,10 @@
         set_location_assignment PIN_E10 -to led[2]
         set_location_assignment PIN_F9 -to led[3]
     \end{lstlisting}
-    \textbf{说明：}（此处说明两种方式的区别和操作方法）
-
+    \textbf{说明：}手动分配引脚适合引脚数量较少或仅需少量调整的情况，操作直观，可直接在 Pin Planner 图形界面中完成，便于初学者理解和检查。使用 tcl 脚本分配引脚则适合引脚较多或需多次复用、批量管理的场景，只需准备好脚本文件即可一键导入，效率更高，也便于团队协作和版本管理。实际操作时，建议在项目初期用 Pin Planner 熟悉引脚分配流程，后续可通过 tcl 脚本实现自动化和规范化管理。
+  
+\cleardoublepage    
+    
     \item 完整编译工程
     \begin{figure}[H]
         \centering
@@ -558,8 +568,7 @@
         \caption{完整编译工程界面}
         \label{fig:step8}
     \end{figure}
-    \textbf{说明：}（此处填写完整编译的流程和注意事项）
-
+    \textbf{说明：}完整编译流程包括：首先点击主界面的“Start Compilation”按钮，Quartus 会自动依次执行 Analysis \& Synthesis、Fitter、Assembler、TimeQuest Timing Analysis 等步骤。编译过程中如遇到错误（Error）或警告（Warning），可在 Messages 窗口查看详细信息，双击可定位到相关代码或设置。常见注意事项包括：确保所有源文件已正确添加到工程、顶层模块设置无误、引脚分配无冲突、时钟约束合理等。建议每次修改代码或引脚分配后都重新完整编译，确保设计的正确性和可用性。
 \cleardoublepage
 
     \item 下载程序至开发板
@@ -590,8 +599,8 @@
         \caption{下载程序到开发板界面4}
         \label{fig:step9_4}
     \end{figure}
-    \textbf{说明：}（此处填写下载步骤和常见问题）
-
+    \textbf{说明：}下载程序到开发板的步骤如下：首先确保开发板已正确连接至电脑，并安装好驱动程序。打开 Quartus，点击工具栏的“Programmer”按钮，进入下载界面。点击“Hardware Setup”选择正确的下载器型号（如 USB-Blaster），然后点击“Auto Detect”自动识别芯片。添加编译生成的 .sof 文件，勾选“Program/Configure”，最后点击“Start”按钮开始下载。下载完成后，观察开发板上的数码管显示是否正常。常见问题包括：未识别到下载器、芯片型号选择错误、下载过程中断等，遇到问题可尝试重新连接设备、检查驱动或重启软件。
+\cleardoublepage
     \item 导出 jic 文件，固化程序
     \begin{figure}[H]
         \centering
@@ -621,7 +630,7 @@
         \label{fig:step10_4}
     \end{figure}
 
-    \textbf{说明：}（此处填写固化流程和注意事项）
+    \textbf{说明：}固化流程如下：首先在 Quartus 中点击“File”菜单，选择“Convert Programming Files”，在弹出的窗口中将 File Type 选择为 JTAG Indirect Configuration File（.jic），并选择对应的目标器件和 Flash 类型。添加已编译生成的 .sof 文件，设置输出文件名和路径，点击“Generate”生成 .jic 文件。生成后，打开“Programmer”界面，将 Mode 设置为“Active Serial Programming”，添加 .jic 文件，选择目标 Flash 芯片，勾选“Program/Configure”，点击“Start”开始固化。固化完成后，断电重启开发板，程序即可自动运行。注意事项：固化前确保芯片型号和 Flash 类型选择正确，避免误操作导致固化失败；固化过程中请勿断开电源或数据线；如遇固化失败，可尝试重新生成 .jic 文件或检查硬件连接。
 \end{enumerate}
 
 
