@@ -680,23 +680,35 @@ LCD连接开发板
 
 \subsection{拓展实验结果：按键绑定实现}
 \noindent
-\textbf{演示视频：}\href{}{点击查看演示视频}
+\textbf{网页端（哔哩哔哩）演示视频：}\href{https://www.bilibili.com/video/BV1QcNEzAEv1/?vd_source=800127bf08c7aa59280ffeb458e19abc}{点击查看演示视频}
+
 
 \section{实验总结}
 
-\subsection{实验中的问题与感想}
+\subsection{实验中的问题}
 
 \begin{enumerate}
 \item 在这次实验的过程中，除了拓展实验之外的所有代码老师已经提供，直接放置在英文目录下即可打开项目，稍加修改编译后即可运行下载。
 \item 在显示中文字符的时候，要注意中文字符是2个字节的，而英文字符是1个字节的，所以在显示中文字符的时候要注意字宽和字高的设置，不能设置为1个字节的大小，否则会出现乱码。
 \item 对于除拓展实验外不同实验的不同文字，我们要注意修改代码的不同部分，最多的修改需要修改五处。
-\item 拓展实验中按键
+\item 拓展实验中字符的宽、高，我们遇到了字符的宽不统一的问题（两个256一个352），最后将较短数组与96位0拼接，也就是在字符后加空格，统一了字符的宽。
+\item 由于我们在拓展实验中lcd\_display.v中改变了图片的分辨率（从100*100的UCASLOGO改成180*108），这里的rom地址会出现越界问题，14位二进制不够用，最后生成的图片会发生上半部分重复出现下半部分不出现的问题，所以改成15位二进制解决问题。
+\item 更多有关拓展实验的内容可以参考实验报告的附录代码部分。
+\end{enumerate}
+
+\subsection{实验收获}
+\begin{enumerate}
+\item 通过这次实验，我们对RGB-LCD屏幕的工作原理有了更深入的了解，掌握了如何使用Quartus软件进行FPGA开发和编程。
+\item 学会了如何使用PCLtoLCD工具将字符转换为点阵数据，并通过PicToMif工具将图像转换为MIF格式，以便在FPGA中使用。
+\item 掌握了如何使用Quartus中的IP Core创建ROM模块，并将静态图像数据加载到FPGA中进行显示。
+\item 通过拓展实验，我们学会了如何使用按键控制显示内容，增强了对FPGA编程的理解和实践能力。
+\item 在实验过程中我们深知耐心的重要性，尤其是在完成拓展实验时，遇到各种问题需要不断调试和修改代码，最终成功实现了预期功能。
 \end{enumerate}
 
 \cleardoublepage
-\section{附录：Verilog 代码修改部分}
+\section{附录：基础实验Verilog 代码修改部分}
 RGB-LCD彩条显示实验没有代码修改；\par
-RGB-LCD字符和图片显示实验之UCAS文字与UCAS-LOGO图像显示Verilog代码修改部分如下：
+RGB-LCD字符和图片显示实验之UCAS文字与UCAS-LOGO图像显示Verilog代码修改部分如下（仅需修改lcd\_display）：
 \begin{lstlisting}[language=Verilog, caption={UCAS文字与UCAS-LOGO图像显示Verilog代码修改部分}, label={lst:verilog_code}]
 localparam CHAR_WIDTH  = 11'd128;
 localparam CHAR_HEIGHT = 11'd64;  
@@ -1041,6 +1053,73 @@ char[254] <= 192'h0000000F0000000000000000000000000008000000000000;
 char[255] <= 192'h000000000000000000000000000000000000000000000000;
 end
 \end{lstlisting}
+
+
+
+
+
+\section{拓展实验Verilog代码}
+lcd\_driver.v文件不用修改\par
+lcd\_rgb\_char\_key.v文件需要修改，增加了四个按键。\href{run:lcd_rgb_char_key.v}{\detokenize{lcd_rgb_char_key.v}}\par
+\begin{lstlisting}[language=Verilog, caption={lcd\_rgb\_char\_key.v代码修改片段}, label={lst:lcd_rgb_char_key}]
+module lcd_rgb_char_key(
+	input sys_clk,
+	input sys_rst_n,
+	input[3:0]key,
+	output lcd_hs,
+	output lcd_vs,
+	output lcd_de,
+	output[15:0]lcd_rgb,
+	output lcd_bl,
+	output lcd_rst,
+	output lcd_pclk
+	);
+wire lcd_clk_w;
+wire locked_w;
+wire rst_n_w;
+wire[15:0]pixel_data_w;
+wire[9:0]pixel_xpos_w;
+wire[9:0]pixel_ypos_w;
+assign rst_n_w=sys_rst_n&&locked_w;
+
+lcd_pll u_lcd_pll(
+	.inclk0(sys_clk),
+	.areset(~sys_rst_n),
+	.c0(lcd_clk_w),
+	.locked(locked_w)
+	);
+lcd_driver u_lcd_driver(
+	.lcd_clk(lcd_clk_w),
+	.sys_rst_n(rst_n_w),
+	.lcd_hs(lcd_hs),
+	.lcd_vs(lcd_vs),
+	.lcd_de(lcd_de),
+	.lcd_rgb(lcd_rgb),
+	.lcd_bl(lcd_bl),
+	.lcd_rst(lcd_rst),
+	.lcd_pclk(lcd_pclk),
+	.pixel_data(pixel_data_w),
+	.pixel_xpos(pixel_xpos_w),
+	.pixel_ypos(pixel_ypos_w)
+	);
+lcd_display u_lcd_display(
+	.lcd_clk(lcd_clk_w),
+	.sys_rst_n(rst_n_w),
+	.key(key),
+	.pixel_xpos(pixel_xpos_w),
+	.pixel_ypos(pixel_ypos_w),
+	.pixel_data(pixel_data_w)
+	);
+endmodule
+\end{lstlisting}
+
+
+由于lcd\_display代码过长，无法在此处展示，完整代码请查看附件，附件代码包含注释。\par
+lcd\_display.v文件需要修改。\href{run:lcd_display.v}{\detokenize{lcd_display.v}}\par
+
+
+
+
 \end{document}
 
 % VScode 常用快捷键：

@@ -1,0 +1,14 @@
+\contentsline {section}{\numberline {1}实验仪器与用具}{2}{section.1}%
+\contentsline {section}{\numberline {2}实验内容与步骤}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}概述}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}本次实验的快速实验步骤}{5}{subsection.2.2}%
+\contentsline {section}{\numberline {3}实验结果}{16}{section.3}%
+\contentsline {subsection}{\numberline {3.1}实验结果：RGB-LCD彩条显示实验}{16}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}实验结果：RGB-LCD字符和图片显示实验}{17}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}实验结果：小组成员姓名显示}{18}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}拓展实验结果：按键绑定实现}{18}{subsection.3.4}%
+\contentsline {section}{\numberline {4}实验总结}{19}{section.4}%
+\contentsline {subsection}{\numberline {4.1}实验中的问题}{19}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}实验收获}{19}{subsection.4.2}%
+\contentsline {section}{\numberline {5}附录：基础实验Verilog 代码修改部分}{20}{section.5}%
+\contentsline {section}{\numberline {6}拓展实验Verilog代码}{26}{section.6}%
