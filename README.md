@@ -11,4 +11,4 @@
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=carteryin/HIVG,CarterYin/Digital_electronics_experiments&type=Date)](https://www.star-history.com/#carteryin/HIVG&CarterYin/Digital_electronics_experiments&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=CarterYin/Digital_electronics_experiments&type=Date)](https://www.star-history.com/#CarterYin/Digital_electronics_experiments&Date)
