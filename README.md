@@ -9,4 +9,6 @@
 ![image](https://github.com/user-attachments/assets/e16c5ffb-3f7c-46f3-b042-9819fc05775c)
 
 
+## Star History
 
+[![Star History Chart](https://api.star-history.com/svg?repos=carteryin/HIVG,CarterYin/Digital_electronics_experiments&type=Date)](https://www.star-history.com/#carteryin/HIVG&CarterYin/Digital_electronics_experiments&Date)
